@@ -4,10 +4,10 @@ class omd::client::checks::install {
   $plugin_path = $omd::client::checks::params::plugin_path
   $puppet_statedir = "${::puppet_vardir}/state"
 
-  if $::puppetversion >= "4" {
+  if versioncmp($::puppetversion, '4.0.0') > 0 {
     $ruby_path = "#!/opt/puppetlabs/puppet/bin/ruby"
   }
-  elsif $::puppetversion < "4" {
+  else {
     $ruby_path = '#!/usr/bin/ruby'
   }
 
